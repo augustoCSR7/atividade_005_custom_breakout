@@ -3,8 +3,6 @@ from right_paddle import RightPaddle
 from left_paddle import LeftPaddle
 from right_triangle import RightTriangle
 from left_triangle import LeftTriangle
-from right_object import RightObject
-from left_object import LeftObject
 from brick import Brick
 from config import FONT, SCORE_TEXT_POS_X, SCORE_TEXT_POS_Y, LIFES_TEXT_POS_X, LIFES_TEXT_POS_Y
 import pygame
@@ -24,8 +22,6 @@ class Screen:
     ball: Ball
     right_paddle: RightPaddle
     left_paddle: LeftPaddle
-    right_object: RightObject
-    left_object : LeftObject
     lifes = int
     score = 0
 
@@ -41,17 +37,14 @@ class Screen:
         self.all_sprites_group.add(self.left_paddle)
         self.all_sprites_group.add(RightTriangle())
         self.all_sprites_group.add(LeftTriangle())
-        self.right_object = RightObject()
-        self.all_sprites_group.add(self.right_object)
-        self.left_object = LeftObject()
-        self.all_sprites_group.add(self.left_object)
         self.bricks_group = pygame.sprite.Group()
         self.add_bricks()
         self.ball = Ball()
         self.all_sprites_group.add(self.ball)
         self.lifes = lifes
         pygame.display.set_caption(caption)
-
+        
+        
     def add_bricks(self):
         pos_x = 160
         pos_y = 200
@@ -69,8 +62,6 @@ class Screen:
         self.ball.collide_with_screen(self.width, self.height)
         self.ball.collide_with_right_paddle(self.right_paddle)
         self.ball.collide_with_left_paddle(self.left_paddle)
-        self.ball.collide_with_right_object(self.right_object)
-        self.ball.collide_with_left_object(self.left_object)
         brick_collision_list = pygame.sprite.spritecollide(self.ball, self.bricks_group, False)
         self.ball.collide_with_brick(brick_collision_list)
         self.all_sprites_group.update()

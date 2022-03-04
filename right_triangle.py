@@ -3,8 +3,8 @@ import pygame
 
 
 class RightTriangle(pygame.sprite.Sprite):
-    pos_x = 520
-    pos_y = 730
+    pos_x = 550
+    pos_y = 570
 
     def __init__(self):
         super().__init__()
